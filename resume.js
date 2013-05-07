@@ -14,7 +14,7 @@ var updateOffset = function(port, video) {
 
 
 var updatePlayer = function(video, offset) {
-  videos[0].currentTime = offset;
+  setTimeout(function() { video.currentTime = offset; }, 0);
 };
 
 
