@@ -21,13 +21,18 @@ var updatePlayer = function(video, offset) {
 var init = function(video) {
   var port = chrome.runtime.connect({name: "coursera_resume"});
 
-  // request offset from background page
   port.onMessage.addListener(function(msg) {
     if (msg["offset"]) {
       updatePlayer(video, msg["offset"]);
     }
   });
+
+  video.addEventListener("seeked", function(e) {
+      updateOffset(port, video);
+  });
+
   video.addEventListener("loadedmetadata", function(e) {
+      // request offset from background page
       port.postMessage({
           "type": "data",
           "className": className,
