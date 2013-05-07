@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Coursera Smart Resume",
+  "description": "Smart resume for Coursera lecture videos.",
+  "version": "1.0",
+  "icons": {"48": "resume_48.png", "128": "resume_128.png"},
+
+  "permissions": [
+    "storage",
+    "*://class.coursera.org/"
+  ],
+
+  "background": { "scripts": ["bg.js"] },
+  "content_scripts": [
+    {
+      "matches": ["*://class.coursera.org/*"],
+      "all_frames": true,
+      "js": ["resume.js"]
+    }
+  ]
+
+}
